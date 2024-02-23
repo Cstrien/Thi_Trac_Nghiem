@@ -28,13 +28,13 @@ public class login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
 
     }
 
     private void addControl() {
+        btnLogin=findViewById(R.id.btnLogin);
         imgBack=findViewById(R.id.imgBack);
     }
 }
