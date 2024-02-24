@@ -30,34 +30,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextText"
-        android:layout_margin="20dp"
+        android:id="@+id/edtName"
         android:layout_width="352dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="40dp"
+        android:layout_margin="20dp"
+        android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="Your name"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
+        app:layout_constraintBottom_toTopOf="@+id/edtMssv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintHorizontal_bias="0.271"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/edtPassword"
         android:layout_margin="20dp"
         android:layout_width="352dp"
         android:layout_height="52dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
+        app:layout_constraintBottom_toTopOf="@+id/edtComfirmPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/edtComfirmPassword"
         android:layout_width="352dp"
         android:layout_height="52dp"
         android:layout_marginBottom="200dp"
@@ -69,15 +69,28 @@
         app:layout_constraintHorizontal_bias="0.406"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/edtUsername"
+        android:layout_width="352dp"
+        android:layout_height="52dp"
+        android:layout_margin="20dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/edtName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtMssv"
         android:layout_margin="20dp"
         android:layout_width="352dp"
         android:layout_height="52dp"
         android:ems="10"
-        android:hint="Numberphone"
-        android:inputType="phone"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
+        android:hint="Mã số sinh viên"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/edtPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent" />
@@ -86,26 +99,26 @@
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="560dp"
-        android:hint="Register"
+        android:layout_marginBottom="136dp"
         android:backgroundTint="@color/Green"
         android:gravity="center"
-        app:layout_constraintHorizontal_bias="0.696"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnCancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="560dp"
-        android:hint="Cancel"
+        android:layout_marginBottom="136dp"
         android:backgroundTint="@color/Green"
         android:gravity="center"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

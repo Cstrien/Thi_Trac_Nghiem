@@ -25,11 +25,7 @@ public class Admin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
     }
-
 
 
     private void addControls() {
