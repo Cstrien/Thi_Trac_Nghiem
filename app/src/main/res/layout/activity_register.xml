@@ -7,7 +7,7 @@
     tools:context=".register">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imgBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="560dp"
         android:hint="Register"
-        android:backgroundTint="@color/Xanh"
+        android:backgroundTint="@color/Green"
         android:gravity="center"
         app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -101,7 +101,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="560dp"
         android:hint="Cancel"
-        android:backgroundTint="@color/Xanh"
+        android:backgroundTint="@color/Green"
         android:gravity="center"
         app:layout_constraintHorizontal_bias="0.139"
         app:layout_constraintLeft_toLeftOf="parent"
