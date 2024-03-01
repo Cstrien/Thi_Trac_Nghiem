@@ -131,18 +131,19 @@ public class Admin_taikhoan extends AppCompatActivity {
                 builder.setTitle("Chỉnh sửa tài khoản");
 
                 // Inflate layout cho dialog
-                //chỉnh sửa view activity_admin_taikhoan thành một cái cụ thể hơn kh có back
-                View dialogView = getLayoutInflater().inflate(R.layout.activity_admin_taikhoan, null);
+                View dialogView = getLayoutInflater().inflate(R.layout.activity_update_admin_taikhoan, null);
                 builder.setView(dialogView);
 
                 // Khởi tạo các EditText và đặt giá trị ban đầu
-                final EditText edtTenSV = dialogView.findViewById(R.id.edtTenSV);
-                final EditText edtUsername = dialogView.findViewById(R.id.edtUsername);
-                final EditText edtPassword = dialogView.findViewById(R.id.edtPassword);
+                final EditText edtTenSV = dialogView.findViewById(R.id.edtTenSVUpdate);
+                final EditText edtUsername = dialogView.findViewById(R.id.edtUsernameUpdate);
+                final EditText edtPassword = dialogView.findViewById(R.id.edtPasswordUpdate);
 
                 edtTenSV.setText(selectedSinhvien.getTenSV());
                 edtUsername.setText(selectedSinhvien.getUsername());
                 edtPassword.setText(selectedSinhvien.getPassword());
+
+
 
                 // Xử lý sự kiện cho nút Lưu trong dialog
                 builder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
