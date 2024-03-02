@@ -39,7 +39,8 @@ public class login extends AppCompatActivity {
                 // Kiểm tra thông tin đăng nhập từ cơ sở dữ liệu
                 if (checkLogin(username, password)) {
                     // Nếu đăng nhập thành công, thực hiện hành động tương ứng (ví dụ: chuyển hướng đến màn hình chính)
-                    Intent intent = new Intent(login.this, Admin.class);
+                    Intent intent = new Intent(login.this, UserActivity.class);
+                    intent.putExtra("o",username);
                     startActivity(intent);
                     finish(); // Đóng activity đăng nhập
                 } else {
