@@ -3,6 +3,7 @@ package com.cstrien.thi_trac_nghiem;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class login extends AppCompatActivity {
                 // Kiểm tra thông tin đăng nhập từ cơ sở dữ liệu
                 if (checkLogin(username, password)) {
                     // Nếu đăng nhập thành công, thực hiện hành động tương ứng (ví dụ: chuyển hướng đến màn hình chính)
+                  //  saveLoginInfo(username,password);
                     Intent intent = new Intent(login.this, UserActivity.class);
                     intent.putExtra("o",username);
                     startActivity(intent);
@@ -89,4 +91,5 @@ public class login extends AppCompatActivity {
         edtUsername=findViewById(R.id.edtUsername);
         edtPassword=findViewById(R.id.edtPassword);
     }
+  
 }

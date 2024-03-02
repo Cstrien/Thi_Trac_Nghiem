@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
@@ -73,6 +74,15 @@ public class register extends AppCompatActivity {
             values.put("Password", password);
             // Thêm dữ liệu vào bảng SinhVien
             database.insert("SinhVien", null, values);
+            // sử dụng SharedPreferences để lưu dữ liệu
+            SharedPreferences preferences = getSharedPreferences("THI_TRAC_NGHIEM_DATA", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("SinhvienID", mssv);
+            editor.putString("Username", username);
+            editor.putString("TenSV", name);
+            editor.putString("Password", password);
+            editor.apply();
+            editor.clear();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -90,7 +100,6 @@ public class register extends AppCompatActivity {
         imgBack=findViewById(R.id.imgBack);
         btnRegister=findViewById(R.id.btnRegister);
         btnCancel=findViewById(R.id.btnCancel);
-
         edtName=findViewById(R.id.edtName);
         edtMssv=findViewById(R.id.edtMssv);
         edtUsername=findViewById(R.id.edtUsername);
