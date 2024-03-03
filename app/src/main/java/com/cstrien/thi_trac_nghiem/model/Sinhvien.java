@@ -10,14 +10,19 @@ public class Sinhvien implements Serializable {
     private String Username;
     private String Password;
 
+
+
     public Sinhvien() {
     }
 
-    public Sinhvien(String sinhvienID, String tenSV, String username, String password) {
+
+
+    public Sinhvien(String sinhvienID, String tenSV, String username, String password  ) {
         SinhvienID = sinhvienID;
         TenSV = tenSV;
         Username = username;
         Password = password;
+
     }
 
     public String getSinhvienID() {
@@ -52,9 +57,11 @@ public class Sinhvien implements Serializable {
         Password = password;
     }
 
+
+
     @NonNull
     @Override
     public String toString() {
-        return SinhvienID+"\t"+TenSV+"\t"+Username+"\t"+Password;
+        return SinhvienID+"\t"+"\t"+TenSV+"\t"+"\t"+Username+"\t"+"\t"+Password+"\t";
     }
 }

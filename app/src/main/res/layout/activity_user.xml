@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
-        android:text="Trang quản lý User"
+        android:text="Trang  User"
         android:textSize="30sp"
         app:layout_constraintHorizontal_bias="0.419"
         app:layout_constraintLeft_toLeftOf="parent"

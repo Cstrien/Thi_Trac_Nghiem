@@ -33,6 +33,7 @@ public class Admin_taikhoan extends AppCompatActivity {
     ArrayAdapter<Sinhvien> arrayAdapterSinhvien;
     Button btn_Xoa, btn_Them;
     EditText edt_Username, edt_Password, edt_Mssv, edt_TenSV;
+    RadioButton rbtSinhvien,rbtAdmin;
     ImageView img_Back;
     SQLiteDatabase database;
 
@@ -53,6 +54,8 @@ public class Admin_taikhoan extends AppCompatActivity {
         edt_TenSV = findViewById(R.id.edtTenSV);
         edt_Username = findViewById(R.id.edtUsername);
         edt_Password = findViewById(R.id.edtPassword);
+        rbtSinhvien=findViewById(R.id.rbtSinhvien);
+        rbtAdmin=findViewById(R.id.rbtAdmin);
         img_Back = findViewById(R.id.imgBack);
         lvTaiKhoan = findViewById(R.id.lvTaikhoan);
         arrayAdapterSinhvien = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, new ArrayList<>());
@@ -64,10 +67,11 @@ public class Admin_taikhoan extends AppCompatActivity {
         Cursor cursor = database.rawQuery("select * from SinhVien", null);
         arrayAdapterSinhvien.clear();
         while (cursor.moveToNext()) {
-            String SinhvienID = cursor.getString(0);
-            String TenSV = cursor.getString(1);
-            String Username = cursor.getString(2);
-            String Password = cursor.getString(3);
+            String SinhvienID = cursor.getString(1);
+            String TenSV = cursor.getString(2);
+            String Username = cursor.getString(3);
+            String Password = cursor.getString(4);
+
             Sinhvien u = new Sinhvien(SinhvienID, TenSV, Username, Password);
             arrayAdapterSinhvien.add(u);
         }
@@ -75,42 +79,67 @@ public class Admin_taikhoan extends AppCompatActivity {
     }
 
     private void addEvent() {
-        btn_Xoa.setOnClickListener(new View.OnClickListener() {
+        // Bắt sự kiện khi RadioButton rbtSinhvien được chọn
+        rbtSinhvien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Xóa tài khoản được chọn từ cơ sở dữ liệu
-                int kq = database.delete("SinhVien", "SinhvienID=?", new String[]{edt_Mssv.getText().toString()});
-                if (kq > 0) {
-                    // Nếu xóa thành công, cập nhật lại danh sách và ListView
-                    loadData();
-                    arrayAdapterSinhvien.notifyDataSetChanged();
-                    Toast.makeText(Admin_taikhoan.this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(Admin_taikhoan.this, "Xóa tài khoản thất bại", Toast.LENGTH_SHORT).show();
-                }
+                // Đặt giá trị của EditText Role là "student" khi chọn Sinh viên
+                rbtAdmin.setChecked(false); // Đảm bảo chỉ có một RadioButton được chọn
             }
         });
+
+        // Bắt sự kiện khi RadioButton rbtAdmin được chọn
+        rbtAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Đặt giá trị của EditText Role là "admin" khi chọn Admin
+                rbtSinhvien.setChecked(false); // Đảm bảo chỉ có một RadioButton được chọn
+            }
+        });
+
 
         btn_Them.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Thêm tài khoản mới vào cơ sở dữ liệu
-                ContentValues values = new ContentValues();
-                values.put("SinhvienID", edt_Mssv.getText().toString());
-                values.put("TenSV", edt_TenSV.getText().toString());
-                values.put("Username", edt_Username.getText().toString());
-                values.put("Password", edt_Password.getText().toString());
-                long kq = database.insert("SinhVien", null, values);
-                if (kq > 0) {
-                    // Nếu thêm thành công, cập nhật lại danh sách và ListView
-                    loadData();
-                    arrayAdapterSinhvien.notifyDataSetChanged();
-                    Toast.makeText(Admin_taikhoan.this, "Đã thêm tài khoản", Toast.LENGTH_SHORT).show();
+                // Kiểm tra xem các trường có dữ liệu hay không
+                String mssv = edt_Mssv.getText().toString().trim();
+                String tenSV = edt_TenSV.getText().toString().trim();
+                String username = edt_Username.getText().toString().trim();
+                String password = edt_Password.getText().toString().trim();
+                String role = ""; // Khởi tạo biến để lưu vai trò
+
+                if (mssv.isEmpty() || tenSV.isEmpty() || username.isEmpty() || password.isEmpty() || role.isEmpty()) {
+                    // Nếu một trong các trường trống, hiển thị thông báo lỗi
+                    Toast.makeText(Admin_taikhoan.this, "Vui lòng điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Admin_taikhoan.this, "Thêm tài khoản thất bại", Toast.LENGTH_SHORT).show();
+                    // Nếu tất cả các trường đều có dữ liệu, tiến hành thêm vào cơ sở dữ liệu
+                    ContentValues values = new ContentValues();
+                    values.put("SinhvienID", mssv);
+                    values.put("TenSV", tenSV);
+                    values.put("Username", username);
+                    values.put("Password", password);
+                    values.put("Role",role);
+                    long kq = database.insert("SinhVien", null, values);
+                    if (kq > 0) {
+                        // Nếu thêm thành công, cập nhật lại danh sách và ListView
+                        loadData();
+                        arrayAdapterSinhvien.notifyDataSetChanged();
+                        Toast.makeText(Admin_taikhoan.this, "Đã thêm tài khoản", Toast.LENGTH_SHORT).show();
+
+                        // Xóa dữ liệu trong các EditText
+                        edt_Mssv.setText("");
+                        edt_TenSV.setText("");
+                        edt_Username.setText("");
+                        edt_Password.setText("");
+                        rbtSinhvien.setChecked(false);
+                        rbtAdmin.setChecked(false);
+                    } else {
+                        Toast.makeText(Admin_taikhoan.this, "Thêm tài khoản thất bại", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+
 
         img_Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,10 +164,17 @@ public class Admin_taikhoan extends AppCompatActivity {
                 builder.setView(dialogView);
 
                 // Khởi tạo các EditText và đặt giá trị ban đầu
+                final EditText edtMssv = dialogView.findViewById(R.id.edtMssvUpdate);
                 final EditText edtTenSV = dialogView.findViewById(R.id.edtTenSVUpdate);
                 final EditText edtUsername = dialogView.findViewById(R.id.edtUsernameUpdate);
                 final EditText edtPassword = dialogView.findViewById(R.id.edtPasswordUpdate);
+                final RadioButton rbtSinhvien = dialogView.findViewById(R.id.rbtSinhvien);
+                final RadioButton rbtAdmin = dialogView.findViewById(R.id.rbtAdmin);
 
+// Đặt giá trị ban đầu cho RadioButton dựa trên vai trò hiện tại của tài khoản
+
+
+                edtMssv.setText(selectedSinhvien.getSinhvienID());
                 edtTenSV.setText(selectedSinhvien.getTenSV());
                 edtUsername.setText(selectedSinhvien.getUsername());
                 edtPassword.setText(selectedSinhvien.getPassword());
@@ -146,16 +182,18 @@ public class Admin_taikhoan extends AppCompatActivity {
 
 
                 // Xử lý sự kiện cho nút Lưu trong dialog
-                builder.setPositiveButton("Lưu", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Cập nhật", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Lấy giá trị mới từ các EditText
+                        String newMssv=edtMssv.getText().toString();
                         String newTenSV = edtTenSV.getText().toString();
                         String newUsername = edtUsername.getText().toString();
                         String newPassword = edtPassword.getText().toString();
 
                         // Cập nhật thông tin của tài khoản trong cơ sở dữ liệu
                         ContentValues values = new ContentValues();
+                        values.put("SinhvienID",newMssv );
                         values.put("TenSV", newTenSV);
                         values.put("Username", newUsername);
                         values.put("Password", newPassword);
@@ -174,13 +212,34 @@ public class Admin_taikhoan extends AppCompatActivity {
                 });
 
                 // Xử lý sự kiện cho nút Hủy bỏ trong dialog
-                builder.setNegativeButton("Hủy bỏ", new DialogInterface.OnClickListener() {
+                builder.setNeutralButton("Xóa", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Đóng dialog nếu người dùng chọn Hủy bỏ
-                        dialog.dismiss();
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // Xác nhận việc xóa tài khoản
+                        AlertDialog.Builder confirmDeleteDialog = new AlertDialog.Builder(Admin_taikhoan.this);
+                        confirmDeleteDialog.setTitle("Xác nhận xóa");
+                        confirmDeleteDialog.setMessage("Bạn có chắc muốn xóa tài khoản này?");
+                        confirmDeleteDialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // Thực hiện xóa tài khoản từ cơ sở dữ liệu
+                                int result = database.delete("SinhVien", "SinhvienID=?", new String[]{selectedSinhvien.getSinhvienID()});
+                                if (result > 0) {
+                                    // Nếu xóa thành công, thông báo và cập nhật lại ListView
+                                    Toast.makeText(Admin_taikhoan.this, "Đã xóa tài khoản", Toast.LENGTH_SHORT).show();
+                                    loadData(); // Cập nhật lại danh sách tài khoản từ cơ sở dữ liệu
+                                    arrayAdapterSinhvien.notifyDataSetChanged(); // Cập nhật lại ListView
+                                } else {
+                                    // Nếu xóa thất bại, thông báo lỗi
+                                    Toast.makeText(Admin_taikhoan.this, "Xóa tài khoản thất bại", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                        confirmDeleteDialog.setNegativeButton("Không", null);
+                        confirmDeleteDialog.show();
                     }
                 });
+
 
                 // Hiển thị dialog
                 builder.create().show();
@@ -194,9 +253,3 @@ public class Admin_taikhoan extends AppCompatActivity {
         database.execSQL("CREATE TABLE IF NOT EXISTS SinhVien (SinhvienID TEXT PRIMARY KEY, TenSV TEXT, Username TEXT, Password TEXT)");
     }
 }
-
-
-
-
-
-
