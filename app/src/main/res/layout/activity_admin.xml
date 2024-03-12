@@ -2,79 +2,104 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/PLAY_PARENT"
+    android:background="#FFF5EE"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Admin">
+    android:padding="0dp">
+
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Xin chào admin"
+        android:id="@+id/txtUserName"
+        android:layout_width="181dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="name"
+        android:textColor="#3168CC"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:text="Trang quản lý Admin"
+        android:id="@+id/txtTieuDe"
+        android:layout_width="374dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="TRANG QUẢN LÝ ADMIN"
+        android:textColor="#3168CC"
         android:textSize="30sp"
-        app:layout_constraintHorizontal_bias="0.419"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgTaikhoan"
-        android:layout_width="131dp"
-        android:layout_height="118dp"
-        android:layout_marginBottom="348dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.203"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon_taikhoan" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUserName"></TextView>
+
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="128dp"
-        android:layout_height="31dp"
-        android:layout_marginBottom="304dp"
-        android:gravity="center"
-        android:hint="Tài Khoản"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/btnDangXuat"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/exit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgCauhoi"
-        android:layout_width="131dp"
-        android:layout_height="118dp"
-        android:layout_marginBottom="340dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.817"
-        app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/icon_question"/>
+        app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="128dp"
-        android:layout_height="31dp"
-        android:layout_marginBottom="300dp"
+        android:id="@+id/textView4"
+        android:layout_width="115dp"
+        android:layout_height="32dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="12dp"
         android:gravity="center"
-        android:hint="Câu hỏi"
-        android:textSize="18sp"
+        android:text="Tài khoản"
+        android:textColor="#3168CC"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnTaiKhoan"></TextView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="143dp"
+        android:layout_height="28dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="48dp"
+        android:text="Đổi mật khẩu"
+        android:textColor="#3168CC"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDoiMatKhau"></TextView>
+
+    <TextView
+        android:id="@+id/btnTaiKhoan"
+        android:layout_width="72dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="96dp"
+        android:background="@drawable/team"
+        android:textColor="#3168CC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTieuDe"></TextView>
+
+    <TextView
+        android:id="@+id/btnDoiMatKhau"
+        android:layout_width="73dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="384dp"
+        android:background="@drawable/reset"
+        android:textColor="#3168CC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.819"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.733"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints">
+
+    </TextView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
