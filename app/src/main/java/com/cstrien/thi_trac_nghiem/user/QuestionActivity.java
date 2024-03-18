@@ -1,8 +1,10 @@
 package com.cstrien.thi_trac_nghiem.user;
 
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -17,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cstrien.thi_trac_nghiem.Database;
 import com.cstrien.thi_trac_nghiem.R;
+import com.cstrien.thi_trac_nghiem.LoginActivity;
 import com.cstrien.thi_trac_nghiem.model.Question;
 
 import java.util.ArrayList;
@@ -58,15 +61,16 @@ public class QuestionActivity extends AppCompatActivity {
     private int categoryID;
     private String categoryName;
 
+    private MediaPlayer songTrue;
+    private MediaPlayer songFalse;
 
-
-
+    private int stateSound = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
-        addControls();
+        anhXa();
 
         Intent intent = getIntent();
         categoryID = intent.getIntExtra("categoryID", 0);
@@ -94,7 +98,7 @@ public class QuestionActivity extends AppCompatActivity {
                         Toast.makeText(QuestionActivity.this, "Hãy chọn đáp án!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-
+                    stopSound();
                     showNextQuestion();
                 }
             }
@@ -111,7 +115,15 @@ public class QuestionActivity extends AppCompatActivity {
                 finishQuestion();
             }
         });
-
+        btnDangXuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createScore();
+                stopSound();
+                Intent intent = new Intent(QuestionActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -123,8 +135,9 @@ public class QuestionActivity extends AppCompatActivity {
         if (answer == currentQuestion.getAnswer() && answered == true) {
             Score += 10;
             textViewScore.setText("Điểm: " + Score);
-
-
+            startSoundTrue();
+        } else {
+            startSoundFalse();
         }
         showSolution();
     }
@@ -229,7 +242,7 @@ public class QuestionActivity extends AppCompatActivity {
 
     private void finishQuestion() {
         createScore();
-
+        stopSound();
         Intent intentResult = new Intent(QuestionActivity.this, MainActivity.class);
         intentResult.putExtra("Score", Score);
         intentResult.putExtra("user", user_name);
@@ -237,12 +250,12 @@ public class QuestionActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onBackPressed () {
+    public void onBackPressed() {
         super.onBackPressed();
         finishQuestion();
     }
 
-    private void addControls() {
+    private void anhXa() {
         textViewCategory = findViewById(R.id.text_view_category);
         textViewQuestion = findViewById(R.id.text_view_question);
         textViewQuestionCount = findViewById(R.id.text_view_question_count);
@@ -267,7 +280,23 @@ public class QuestionActivity extends AppCompatActivity {
         db.createScore(user_name, categoryID, Score);
     }
 
+    private void startSoundTrue() {
+        songTrue = MediaPlayer.create(QuestionActivity.this, R.raw.dung);
+        songTrue.start();
+    }
 
+    private void startSoundFalse() {
+        songFalse = MediaPlayer.create(QuestionActivity.this, R.raw.sai);
+        songFalse.start();
+    }
+
+    private void stopSound() {
+        countDownTimer.cancel();
+        if (songTrue != null)
+            songTrue.stop();
+        if (songFalse != null)
+            songFalse.stop();
+    }
 
     private void DialogConfirm() {
         //tạo đối tượng dialog

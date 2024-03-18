@@ -6,62 +6,82 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/setbackgroupapp"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Thi_Trac_Nghiem"
         tools:targetApi="31">
-
         <activity
             android:name=".admin.AdminActivity"
-            android:exported="true" />
-
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.MenuQuestionActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.MenuCategoryActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.AddCategoryActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".admin.AddUserActivity"
-            android:exported="true" />
-
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.AddQuestionActivity"
+            android:exported="true"></activity>
+        <activity
+            android:name=".admin.EditCategoryActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".admin.EditUserActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
-
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".admin.EditQuestionActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ChangePassActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".admin.MenuUserActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SignUpActivity"
-            android:exported="true" />
+            android:exported="true"></activity>
         <activity
             android:name=".user.QuestionActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".user.UserActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.RankActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".user.HistoryActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".user.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
-
 
     </application>
 

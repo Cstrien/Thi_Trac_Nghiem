@@ -1,9 +1,8 @@
 package com.cstrien.thi_trac_nghiem.model;
 
-import androidx.annotation.NonNull;
-
-import java.io.Serializable;
-
+import android.os.Parcel;
+import android.os.Parcelable;
+//implements Parcelable
 public class User {
     private int id, role;
     private String name, password;
@@ -48,4 +47,35 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+//    protected User(Parcel in) {
+//        this.id = in.readInt();
+//        this.role = in.readInt();
+//        this.name = in.readString();
+//        this.password = in.readString();
+//    }
+//
+//    public static final Creator<User> CREATOR = new Creator<User>() {
+//        @Override
+//        public User createFromParcel(Parcel in) {
+//            return new User(in);
+//        }
+//
+//        @Override
+//        public User[] newArray(int size) {
+//            return new User[size];
+//        }
+//    };
+//
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.writeInt(id);
+//        dest.writeString(name);
+//        dest.writeString(password);
+//        dest.writeInt(role);
+//    }
 }

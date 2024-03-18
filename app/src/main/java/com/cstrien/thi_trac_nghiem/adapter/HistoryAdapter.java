@@ -7,22 +7,18 @@ import android.widget.TextView;
 
 import com.cstrien.thi_trac_nghiem.R;
 import com.cstrien.thi_trac_nghiem.model.Category;
-import com.cstrien.thi_trac_nghiem.model.Question;
 import com.cstrien.thi_trac_nghiem.model.Score;
 import com.cstrien.thi_trac_nghiem.model.User;
 
 import java.util.ArrayList;
 
-public class ScoreAdapter extends BaseAdapter {
+public class HistoryAdapter extends BaseAdapter {
     private ArrayList<Score> listScore;
     private ArrayList<Category> listCategories;
-    private ArrayList<User> listUsers;
-//    private ArrayList<Question> listQuestions;
 
-    public ScoreAdapter(ArrayList<Score> listScore, ArrayList<Category> listCategories, ArrayList<User> listUsers) {
+    public HistoryAdapter(ArrayList<Score> listScore, ArrayList<Category> listCategories) {
         this.listScore = listScore;
         this.listCategories = listCategories;
-        this.listUsers = listUsers;
     }
 
     @Override
@@ -46,17 +42,15 @@ public class ScoreAdapter extends BaseAdapter {
 
         View viewScore;
         if (convertView == null) {
-            viewScore = View.inflate(parent.getContext(), R.layout.rank_view, null);
+            viewScore = View.inflate(parent.getContext(), R.layout.history_view, null);
         } else viewScore = convertView;
 
         //Bind dữ liệu phần tử vào View
         Score score = (Score) getItem(position);
-        ((TextView) viewScore.findViewById(R.id.img_user)).setText(String.format("%s", getFirstLetterName(getNameUser(score.getId_user()))));
         ((TextView) viewScore.findViewById(R.id.rank)).setText(String.format("%d", position + 1));
         ((TextView) viewScore.findViewById(R.id.score)).setText(String.format("%d", score.getScore()));
         ((TextView) viewScore.findViewById(R.id.name_category)).setText(String.format("%s", getNameCategory(score.getId_category())));
-        ((TextView) viewScore.findViewById(R.id.user_name)).setText(String.format("%s", getNameUser(score.getId_user())));
-
+        ((TextView) viewScore.findViewById(R.id.date)).setText(String.format("%s", score.getDate()));
 
         return viewScore;
     }
@@ -69,16 +63,4 @@ public class ScoreAdapter extends BaseAdapter {
         return "";
     }
 
-    private String getNameUser(int id) {
-        for (User u : listUsers
-        ) {
-            if (u.getId() == id) return u.getName();
-        }
-        return "";
-    }
-
-    private String getFirstLetterName(String user_name) {
-        String[] rs = user_name.split("");
-        return rs[0].toUpperCase();
-    }
 }

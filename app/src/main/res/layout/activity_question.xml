@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFF5EE"
     android:orientation="vertical"
-    tools:context="user.QuestionActivity">
+    tools:context=".controller.user.QuestionActivity">
 
     <TextView
         android:id="@+id/btnHome"
@@ -15,9 +15,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="58dp"
-        android:background="@drawable/home2">
-
-    </TextView>
+        android:background="@drawable/home2"></TextView>
 
     <TextView
         android:id="@+id/txtClock"
@@ -26,9 +24,16 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="110dp"
-        android:background="@drawable/clock">
+        android:background="@drawable/clock"></TextView>
 
-    </TextView>
+    <TextView
+        android:id="@+id/btnDangXuat"
+        android:layout_width="39dp"
+        android:layout_height="41dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="4dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/exit"></TextView>
 
     <TextView
         android:id="@+id/text_view_score"
@@ -38,9 +43,7 @@
         android:layout_marginTop="4dp"
         android:freezesText="true"
         android:text="Điểm: 0"
-        android:textColor="@color/black">
-
-    </TextView>
+        android:textColor="@color/black"></TextView>
 
     <TextView
         android:id="@+id/text_view_question_count"
@@ -50,9 +53,7 @@
         android:layout_marginLeft="20dp"
         android:freezesText="true"
         android:text="Câu hỏi: 1/a"
-        android:textColor="@color/black">
-
-    </TextView>
+        android:textColor="@color/black"></TextView>
 
     <TextView
         android:id="@+id/text_view_category"
@@ -62,9 +63,7 @@
         android:layout_marginLeft="20dp"
         android:freezesText="true"
         android:text="Chủ đề: a"
-        android:textColor="@color/black">
-
-    </TextView>
+        android:textColor="@color/black"></TextView>
 
     <TextView
         android:id="@+id/text_view_countdown"
@@ -76,9 +75,7 @@
         android:freezesText="true"
         android:text="00 : 30"
         android:textColor="@color/black"
-        android:textSize="40sp">
-
-    </TextView>
+        android:textSize="40sp"></TextView>
 
     <TextView
         android:id="@+id/text_view_question"
@@ -91,9 +88,7 @@
         android:gravity="center"
         android:text="câu hỏi?"
         android:textColor="@color/black"
-        android:textSize="20sp">
-
-    </TextView>
+        android:textSize="20sp"></TextView>
 
     <RadioGroup
         android:id="@+id/radio_group"
@@ -108,33 +103,25 @@
             android:id="@+id/radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lựa chọn 1">
-
-        </RadioButton>
+            android:text="Lựa chọn 1"></RadioButton>
 
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lựa chọn 2">
-
-        </RadioButton>
+            android:text="Lựa chọn 2"></RadioButton>
 
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lựa chọn 3">
-
-        </RadioButton>
+            android:text="Lựa chọn 3"></RadioButton>
 
         <RadioButton
             android:id="@+id/radio_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Lựa chọn 4">
-
-        </RadioButton>
+            android:text="Lựa chọn 4"></RadioButton>
 
 
     </RadioGroup>
@@ -145,15 +132,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/radio_group"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="16dp"
         android:width="150dp"
         android:background="@drawable/btn_vien"
         android:freezesText="true"
         android:gravity="center"
         android:text="Xác nhận"
-        android:textColor="@color/white">
-
-    </TextView>
+        android:textColor="@color/white"></TextView>
 
     <TextView
         android:id="@+id/btnBackMainUser"
@@ -161,15 +146,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/radio_group"
         android:layout_marginLeft="210dp"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="16dp"
         android:width="150dp"
         android:background="@drawable/btn_back"
         android:freezesText="true"
         android:gravity="center"
         android:text="Quay lại"
-        android:textColor="@color/white">
-
-    </TextView>
+        android:textColor="@color/white"></TextView>
 
     <!--    <Button-->
     <!--        android:id="@+id/button_confirm_next"-->

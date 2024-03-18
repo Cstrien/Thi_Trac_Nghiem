@@ -8,86 +8,75 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.cstrien.thi_trac_nghiem.Database;
 import com.cstrien.thi_trac_nghiem.R;
+import com.cstrien.thi_trac_nghiem.adapter.CategoryAdapter;
 import com.cstrien.thi_trac_nghiem.adapter.QuestionAdapter;
-import com.cstrien.thi_trac_nghiem.adapter.UserAdapter;
 import com.cstrien.thi_trac_nghiem.LoginActivity;
 import com.cstrien.thi_trac_nghiem.model.Category;
-import com.cstrien.thi_trac_nghiem.model.User;
+import com.cstrien.thi_trac_nghiem.model.Question;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MenuUserActivity extends AppCompatActivity {
+public class MenuCategoryActivity extends AppCompatActivity {
     private TextView txtUserName;
     private TextView btnDangXuat;
     private TextView btnHome;
+    private ImageButton btnAddCategory;
     private TextView btnClear;
     private EditText edtSearch;
-
-    private ListView lvUser;
-
-    private ImageButton btnAddUser;
-
+    // khai báo listView
+    private ListView lvCategory;
+    private ArrayList<Category> listCategories;
+    private CategoryAdapter categoryAdapter;
     private String user_name;
+
     private long mLastClickTime = 0;
-    //
-    private ArrayList<User> listUsers;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_user);
+        setContentView(R.layout.activity_menu_category);
         //
         anhXa();
-        loadUsers(null);
+        loadCategories(null);
         //
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
+
+
         //
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuUserActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MenuCategoryActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
         //
-        btnAddUser.setOnClickListener(new View.OnClickListener() {
+        btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MenuUserActivity.this, AddUserActivity.class);
+                Intent intent = new Intent(MenuCategoryActivity.this, AddCategoryActivity.class);
                 intent.putExtra("user", user_name);
                 startActivity(intent);
             }
         });
-        btnHome.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuUserActivity.this, AdminActivity.class);
-                intent.putExtra("user", user_name);
-                startActivity(intent);
-            }
-        });
-        //
-        lvUser.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                DialogDelete(position);
-                return false;
-            }
-        });
-        lvUser.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //sự kiện nhấn vào item listView
+        lvCategory.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 long currTime = System.currentTimeMillis();
@@ -98,10 +87,25 @@ public class MenuUserActivity extends AppCompatActivity {
             }
 
             public void onItemDoubleClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MenuUserActivity.this, EditUserActivity.class);
-                int id_user = listUsers.get(position).getId();
+                int id_category = listCategories.get(position).getId();
+                Intent intent = new Intent(MenuCategoryActivity.this, EditCategoryActivity.class);
                 intent.putExtra("user", user_name);
-                intent.putExtra("id_user", id_user);
+                intent.putExtra("id_category", id_category);
+                startActivity(intent);
+            }
+        });
+        lvCategory.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                DialogDelete(position);
+                return false;
+            }
+        });
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MenuCategoryActivity.this, AdminActivity.class);
+                intent.putExtra("user", user_name);
                 startActivity(intent);
             }
         });
@@ -115,9 +119,9 @@ public class MenuUserActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String search = edtSearch.getText().toString().trim();
                 if (!search.equalsIgnoreCase("")) {
-                    loadUsers(search);
+                    loadCategories(search);
                 } else {
-                    loadUsers(null);
+                    loadCategories(null);
                 }
                 if (edtSearch.getText().toString().equalsIgnoreCase("")) {
                     btnClear.setBackgroundResource(R.drawable.search);
@@ -138,7 +142,6 @@ public class MenuUserActivity extends AppCompatActivity {
             }
         });
     }
-
     private void DialogDelete(int position) {
         //tạo đối tượng dialog
         Dialog dialog = new Dialog(this);
@@ -156,19 +159,14 @@ public class MenuUserActivity extends AppCompatActivity {
         btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int id_user = listUsers.get(position).getId();
-                User user = listUsers.get(position);
+                int id_category = listCategories.get(position).getId();
                 //xóa dữ liệu
-                if (deleteUser(id_user)) {
-                    loadUsers(null);
+                if (deleteCategory(id_category)) {
+                    loadCategories(null);
                     dialog.cancel();
-                    Toast.makeText(MenuUserActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
-                    if(user.getName().equalsIgnoreCase(user_name)){
-                        Intent intent = new Intent(MenuUserActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
+                    Toast.makeText(MenuCategoryActivity.this, "Xóa thành công", Toast.LENGTH_SHORT).show();
                 } else
-                    Toast.makeText(MenuUserActivity.this, "Xóa không thành công", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MenuCategoryActivity.this, "Xóa không thành công", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -183,31 +181,31 @@ public class MenuUserActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    private boolean deleteUser(int id_user) {
+
+    private boolean deleteCategory(int id_category) {
         Database db = new Database(this);
-        return db.deleteUser(id_user);
+        return db.deleteCategory(id_category);
     }
 
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
-        btnAddUser = findViewById(R.id.btnAddUser);
-        txtUserName = findViewById(R.id.txtUserName);
+        lvCategory = findViewById(R.id.lvCategory);
         btnDangXuat = findViewById(R.id.btnDangXuat);
+        btnAddCategory = findViewById(R.id.btnAddCategory);
         btnHome = findViewById(R.id.btnHome);
-        lvUser = findViewById(R.id.lvUser);
-        edtSearch = findViewById(R.id.edtSearch);
         btnClear = findViewById(R.id.btnClear);
+
+        edtSearch = findViewById(R.id.edtSearch);
     }
 
-    private void loadUsers(String key) {
+    private void loadCategories(String key) {
         Database db = new Database(this);
-        listUsers = db.getListUsers(key);
+        listCategories = db.getListCategories(key);
 
-        UserAdapter userAdapter = new UserAdapter(listUsers);
+        categoryAdapter = new CategoryAdapter(listCategories);
 
-        lvUser.setAdapter(userAdapter);
+        lvCategory.setAdapter(categoryAdapter);
+
     }
 
 }
-
-

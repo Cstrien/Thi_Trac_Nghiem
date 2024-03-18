@@ -2,6 +2,7 @@ package com.cstrien.thi_trac_nghiem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.cstrien.thi_trac_nghiem.Database;
+import com.cstrien.thi_trac_nghiem.R;
 import com.cstrien.thi_trac_nghiem.admin.AdminActivity;
-import com.cstrien.thi_trac_nghiem.model.User;
 import com.cstrien.thi_trac_nghiem.user.UserActivity;
+import com.cstrien.thi_trac_nghiem.model.User;
 
 public class ChangePassActivity extends AppCompatActivity {
 
@@ -109,4 +112,6 @@ public class ChangePassActivity extends AppCompatActivity {
         }
         return true;
     }
+
+
 }

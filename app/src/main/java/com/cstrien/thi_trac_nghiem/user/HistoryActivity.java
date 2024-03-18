@@ -1,12 +1,11 @@
 package com.cstrien.thi_trac_nghiem.user;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -15,43 +14,49 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cstrien.thi_trac_nghiem.Database;
 import com.cstrien.thi_trac_nghiem.R;
+import com.cstrien.thi_trac_nghiem.adapter.HistoryAdapter;
+import com.cstrien.thi_trac_nghiem.adapter.ScoreAdapter;
 import com.cstrien.thi_trac_nghiem.LoginActivity;
 import com.cstrien.thi_trac_nghiem.model.Category;
+import com.cstrien.thi_trac_nghiem.model.Question;
+import com.cstrien.thi_trac_nghiem.model.Score;
+import com.cstrien.thi_trac_nghiem.model.User;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity {
     private TextView btnDangXuat;
     private TextView btnHome;
     private TextView txtUserName;
     private Spinner spCategory;
-    private TextView btnStart;
-    private TextView btnHistory;
-    private TextView btnBack;
-    private TextView txtHighScore;
+    private ListView lvHistory;
 
+    private ArrayList<Score> listScore;
     private ArrayList<Category> listCategories;
+    private ArrayList<User> listUsers;
+
+    private HistoryAdapter historyAdapter;
 
     private String user_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_history);
         //
         anhXa();
         //
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(HistoryActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
         spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                updateHighScore();
+                loadHistory();
             }
 
             @Override
@@ -62,29 +67,7 @@ public class MainActivity extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                intent.putExtra("user", user_name);
-                startActivity(intent);
-            }
-        });
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startQuestion();
-            }
-        });
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, UserActivity.class);
-                intent.putExtra("user", user_name);
-                startActivity(intent);
-            }
-        });
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+                Intent intent = new Intent(HistoryActivity.this, UserActivity.class);
                 intent.putExtra("user", user_name);
                 startActivity(intent);
             }
@@ -96,29 +79,28 @@ public class MainActivity extends AppCompatActivity {
         btnHome = findViewById(R.id.btnHome);
         txtUserName = findViewById(R.id.txtUserName);
         spCategory = findViewById(R.id.spCategory);
-        btnStart = findViewById(R.id.btnStart);
-        btnHistory = findViewById(R.id.btnHistory);
-        btnBack = findViewById(R.id.btnBack);
-        txtHighScore = findViewById(R.id.txtHighScore);
+        lvHistory = findViewById(R.id.lvHistory);
 
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user");
         txtUserName.setText(user_name);
 
         loadCategories();
+        loadHistory();
 
-        updateHighScore();
     }
 
-    private void startQuestion() {
+    private void loadHistory() {
         Category category = (Category) spCategory.getSelectedItem();
-        Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-        String categoryName = category.getName();
-        int categoryID = category.getId();
-        intent.putExtra("user", user_name);
-        intent.putExtra("categoryName", categoryName);
-        intent.putExtra("categoryID", categoryID);
-        startActivity(intent);
+
+        Database db = new Database(this);
+        listScore = db.getListScore(category.getId(), user_name);
+        listCategories = db.getListCategories(null);
+        listUsers = db.getListUsers(null);
+
+        historyAdapter = new HistoryAdapter(listScore, listCategories);
+        lvHistory.setAdapter(historyAdapter);
+
     }
 
     private void loadCategories() {
@@ -131,11 +113,4 @@ public class MainActivity extends AppCompatActivity {
         // gắn chủ đề lên spinner hiển thị
         spCategory.setAdapter(categoryArrayAdapter);
     }
-
-    private void updateHighScore() {
-        Category category = (Category) spCategory.getSelectedItem();
-        Database db = new Database(this);
-        txtHighScore.setText("Điểm cao: " + db.getHighScoreByIdCategory(category.getId()));
-    }
-
 }

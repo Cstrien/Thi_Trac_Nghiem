@@ -1,37 +1,36 @@
 package com.cstrien.thi_trac_nghiem.admin;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.cstrien.thi_trac_nghiem.R;
 import com.cstrien.thi_trac_nghiem.ChangePassActivity;
 import com.cstrien.thi_trac_nghiem.LoginActivity;
-import com.cstrien.thi_trac_nghiem.R;
 
 public class AdminActivity extends AppCompatActivity {
+
     private TextView txtUserName;
     private TextView btnTaiKhoan;
     private TextView btnDangXuat;
+    private TextView btnCauHoi;
+    private TextView btnChuDe;
     private TextView btnDoiMatKhau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
-        // Khởi tạo các thành phần giao diện
-        addControls();
-
-        // Nhận dữ liệu từ Intent
+        //
+        anhXa();
+        //
         Intent intent = getIntent();
         String user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
-
-        // Xử lý sự kiện khi nhấn nút "Đăng xuất"
+        //
         btnDangXuat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,8 +38,25 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Xử lý sự kiện khi nhấn nút "Đổi mật khẩu"
+        //
+        btnCauHoi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, MenuQuestionActivity.class);
+                intent.putExtra("user", user_name);
+                startActivity(intent);
+            }
+        });
+        //
+        btnChuDe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, MenuCategoryActivity.class);
+                intent.putExtra("user", user_name);
+                startActivity(intent);
+            }
+        });
+        //
         btnDoiMatKhau.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +65,7 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Xử lý sự kiện khi nhấn nút "Tài khoản"
+        //
         btnTaiKhoan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,11 +74,14 @@ public class AdminActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
-    // Khởi tạo các thành phần giao diện
-    private void addControls() {
+    private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
+        btnCauHoi = findViewById(R.id.btnCauHoi);
+        btnChuDe = findViewById(R.id.btnChuDe);
         btnDangXuat = findViewById(R.id.btnDangXuat);
         btnTaiKhoan = findViewById(R.id.btnTaiKhoan);
         btnDoiMatKhau = findViewById(R.id.btnDoiMatKhau);

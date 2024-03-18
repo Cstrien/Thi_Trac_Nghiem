@@ -1,38 +1,34 @@
 package com.cstrien.thi_trac_nghiem.model;
 
 public class Category {
+    private int id;
+    private String name;
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
+    public String getName() {
+        return name;
+    }
 
-        private int id;
-        private String name;
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public int getId() {
-            return id;
-        }
+    public Category(String name) {
+        this.name = name;
+    }
 
-        public void setId(int id) {
-            this.id = id;
-        }
+    public Category() {
+    }
 
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Category(String name) {
-            this.name = name;
-        }
-
-        public Category() {
-        }
-
-        @Override
-        public String toString() {
-            return getName();
-        }
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

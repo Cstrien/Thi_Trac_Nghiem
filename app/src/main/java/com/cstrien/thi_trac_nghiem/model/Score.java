@@ -1,5 +1,6 @@
 package com.cstrien.thi_trac_nghiem.model;
 
+
 public class Score {
     private int id;
     private int id_user;
@@ -56,4 +57,5 @@ public class Score {
         this.id_category = id_category;
         this.score = score;
     }
+
 }

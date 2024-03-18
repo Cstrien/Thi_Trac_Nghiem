@@ -11,7 +11,7 @@
         android:layout_below="@+id/txtTieuDe"
         android:layout_marginTop="80dp"
         android:background="@drawable/search2"
-        android:hint="Nhập id hoặc tên tài khoản"
+        android:hint="Nhập id hoặc tên chủ đề"
         android:paddingLeft="20dp">
 
     </EditText>
@@ -63,14 +63,14 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:gravity="center"
-        android:text="QUẢN LÝ TÀI KHOẢN"
+        android:text="QUẢN LÝ CHỦ ĐỀ"
         android:textColor="#3168CC"
         android:textSize="30sp"
         android:textStyle="bold"></TextView>
 
 
     <ImageButton
-        android:id="@+id/btnAddUser"
+        android:id="@+id/btnAddCategory"
         android:layout_width="48dp"
         android:layout_height="49dp"
         android:layout_below="@id/txtTieuDe"
@@ -90,7 +90,7 @@
         android:text="Thêm"></TextView>
 
     <ListView
-        android:id="@+id/lvUser"
+        android:id="@+id/lvCategory"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="370dp">
@@ -105,7 +105,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Danh sách tài khoản"
+        android:text="Danh sách chủ đề"
         android:textColor="#3168CC"
         android:textStyle="bold" />
 
@@ -117,19 +117,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="140dp"
         android:gravity="center"
-        android:text="Tên tài khoản"
-        android:textColor="#3168CC"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="102dp"
-        android:layout_height="35dp"
-        android:layout_below="@id/txtTieuDe"
-        android:layout_marginLeft="270dp"
-        android:layout_marginTop="140dp"
-        android:gravity="center"
-        android:text="Phân quyền"
+        android:text="Mã chủ đề"
         android:textColor="#3168CC"
         android:textStyle="bold" />
 
@@ -138,10 +126,10 @@
         android:layout_width="102dp"
         android:layout_height="35dp"
         android:layout_below="@id/txtTieuDe"
-        android:layout_marginLeft="140dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="140dp"
         android:gravity="center"
-        android:text="Mật khẩu"
+        android:text="Tên chủ đề"
         android:textColor="#3168CC"
         android:textStyle="bold" />
 

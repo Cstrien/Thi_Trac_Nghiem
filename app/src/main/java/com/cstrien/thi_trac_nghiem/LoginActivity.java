@@ -1,25 +1,22 @@
 package com.cstrien.thi_trac_nghiem;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cstrien.thi_trac_nghiem.admin.AddUserActivity;
-import com.cstrien.thi_trac_nghiem.admin.AdminActivity;
-import com.cstrien.thi_trac_nghiem.model.User;
-import com.cstrien.thi_trac_nghiem.user.MainActivity;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.cstrien.thi_trac_nghiem.Database;
+import com.cstrien.thi_trac_nghiem.R;
 import com.cstrien.thi_trac_nghiem.user.UserActivity;
+import com.cstrien.thi_trac_nghiem.model.User;
+import com.cstrien.thi_trac_nghiem.admin.AdminActivity;
 
 public class LoginActivity extends AppCompatActivity {
+
     private TextView btnDangNhap;
     private TextView btnDangKy;
     private EditText edtTaiKhoan;
@@ -88,5 +85,5 @@ public class LoginActivity extends AppCompatActivity {
         }
         return true;
     }
-  
+
 }

@@ -1,7 +1,6 @@
 package com.cstrien.thi_trac_nghiem.model;
 
 public class Question {
-
     private int id;
     private String question;
     private String option1;
