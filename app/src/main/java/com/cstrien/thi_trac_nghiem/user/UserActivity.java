@@ -17,8 +17,7 @@ import com.cstrien.thi_trac_nghiem.LoginActivity;
 public class UserActivity extends AppCompatActivity {
     private TextView btnReady;
     private TextView btnGuide;
-    private TextView btnHistory;
-    private TextView btnRank;
+
     private TextView btnDoiMatKhau;
     private TextView txtUserName;
     private TextView btnDangXuat;
@@ -37,7 +36,7 @@ public class UserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserActivity.this, MainActivity.class);
-                intent.putExtra("user", user_name);
+                intent.putExtra("Xin chào " + "user", user_name);
                 startActivity(intent);
             }
         });
@@ -56,41 +55,28 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnRank.setOnClickListener(new View.OnClickListener() {
+        btnGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, RankActivity.class);
-                intent.putExtra("user", user_name);
+                Intent intent=new Intent(UserActivity.this, InstructActivity.class);
                 startActivity(intent);
             }
         });
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(UserActivity.this, HistoryActivity.class);
-                intent.putExtra("user", user_name);
-                startActivity(intent);
-            }
-        });
+
     }
 
     private void anhXa() {
         btnReady = findViewById(R.id.btnReady);
         btnDoiMatKhau = findViewById(R.id.btnDoiMatKhau);
         btnGuide = findViewById(R.id.btnGuide);
-        btnHistory = findViewById(R.id.btnHistory);
         btnDangXuat = findViewById(R.id.btnDangXuat);
-        btnRank = findViewById(R.id.btnRank);
+
         txtUserName = findViewById(R.id.txtUserName);
 
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user");
         txtUserName.setText(user_name);
 
-        Animation mAnimation = new AlphaAnimation(1, 0);
-        mAnimation.setDuration(300);
-        mAnimation.setRepeatCount(Animation.INFINITE);
-        mAnimation.setRepeatMode(Animation.REVERSE);
-        btnReady.startAnimation(mAnimation);
+
     }
 }

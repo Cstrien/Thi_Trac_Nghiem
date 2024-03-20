@@ -69,24 +69,33 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validateInput() {
-        if (edtTaiKhoan.getText().toString().trim().isEmpty()) {
+        String taiKhoan = edtTaiKhoan.getText().toString().trim();
+        String matKhau = edtMatKhau.getText().toString().trim();
+        String nhapLaiMatKhau = edtNhapLaiMatKhau.getText().toString().trim();
+
+        if (taiKhoan.isEmpty()) {
             Toast.makeText(SignUpActivity.this, "Chưa nhập tài khoản!", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (edtMatKhau.getText().toString().trim().isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "Chưa nhập mật khẩu!", Toast.LENGTH_SHORT).show();
+        } else if (matKhau.isEmpty()) {
+            setEditTextError(edtMatKhau, "Chưa nhập mật khẩu!");
             return false;
-        } else if (edtNhapLaiMatKhau.getText().toString().trim().isEmpty()) {
-            Toast.makeText(SignUpActivity.this, "Chưa nhập lại mật khẩu!", Toast.LENGTH_SHORT).show();
+        } else if (nhapLaiMatKhau.isEmpty()) {
+            setEditTextError(edtNhapLaiMatKhau, "Chưa nhập lại mật khẩu!");
             return false;
-        } else if (!edtNhapLaiMatKhau.getText().toString().trim().equalsIgnoreCase(edtMatKhau.getText().toString().trim())) {
-            Toast.makeText(SignUpActivity.this, "Mật khẩu nhập lại không trùng khớp!", Toast.LENGTH_SHORT).show();
+        } else if (matKhau.length() < 3) {
+            setEditTextError(edtMatKhau, "Mật khẩu phải có ít nhất 3 kí tự!");
             return false;
-        } else if (!checkExistUser(edtTaiKhoan.getText().toString().trim())) {
+        } else if (!nhapLaiMatKhau.equalsIgnoreCase(matKhau)) {
+            setEditTextError(edtNhapLaiMatKhau, "Mật khẩu nhập lại không trùng khớp!");
+            return false;
+        } else if (!checkExistUser(taiKhoan)) {
             Toast.makeText(SignUpActivity.this, "Tên tài khoản đã được sử dụng!", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
+
 
     private boolean checkExistUser(String name) {
         Database db = new Database(this);
@@ -94,5 +103,11 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         return true;
     }
+
+    private void setEditTextError(EditText editText, String error) {
+        editText.requestFocus();
+        editText.setError(error);
+    }
+
 
 }

@@ -21,14 +21,15 @@ import com.cstrien.thi_trac_nghiem.model.Category;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private TextView txtUserName;
     private Spinner spCategory;
+    private TextView btnGuide;
     private TextView btnStart;
-    private TextView btnHistory;
+
     private TextView btnBack;
-    private TextView txtHighScore;
+
 
     private ArrayList<Category> listCategories;
 
@@ -39,26 +40,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //
-        anhXa();
+        addControls();
         //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        spCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                updateHighScore();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,25 +65,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-                intent.putExtra("user", user_name);
-                startActivity(intent);
-            }
-        });
+
+
     }
 
-    private void anhXa() {
-        btnDangXuat = findViewById(R.id.btnDangXuat);
+    private void addControls() {
+
         btnHome = findViewById(R.id.btnHome);
         txtUserName = findViewById(R.id.txtUserName);
         spCategory = findViewById(R.id.spCategory);
         btnStart = findViewById(R.id.btnStart);
-        btnHistory = findViewById(R.id.btnHistory);
         btnBack = findViewById(R.id.btnBack);
-        txtHighScore = findViewById(R.id.txtHighScore);
 
         Intent intent = getIntent();
         user_name = intent.getStringExtra("user");
@@ -107,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
         loadCategories();
 
-        updateHighScore();
+
     }
 
     private void startQuestion() {
@@ -132,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
         spCategory.setAdapter(categoryArrayAdapter);
     }
 
-    private void updateHighScore() {
-        Category category = (Category) spCategory.getSelectedItem();
-        Database db = new Database(this);
-        txtHighScore.setText("Điểm cao: " + db.getHighScoreByIdCategory(category.getId()));
-    }
+
 
 }

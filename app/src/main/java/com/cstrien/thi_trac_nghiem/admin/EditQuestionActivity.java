@@ -24,7 +24,6 @@ import java.util.List;
 
 public class EditQuestionActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
     private TextView btnHome;
     private Spinner spCategory;
     private ImageButton btnEditQuestion;
@@ -74,13 +73,7 @@ public class EditQuestionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditQuestionActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         btnEditQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,7 +119,6 @@ public class EditQuestionActivity extends AppCompatActivity {
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
         spCategory = findViewById(R.id.spCategory);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
         btnEditQuestion = findViewById(R.id.btnEditQuestion);
         btnBackQuestion = findViewById(R.id.btnBackQuestion);
         btnHome = findViewById(R.id.btnHome);

@@ -27,7 +27,7 @@ import java.util.List;
 
 public class AddQuestionActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private Spinner spCategory;
     private ImageButton btnCreateQuestion;
@@ -52,13 +52,7 @@ public class AddQuestionActivity extends AppCompatActivity {
         String user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
         //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddQuestionActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         btnCreateQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,7 +103,6 @@ public class AddQuestionActivity extends AppCompatActivity {
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
         spCategory = findViewById(R.id.spCategory);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
         btnCreateQuestion = findViewById(R.id.btnCreateQuestion);
         btnHome = findViewById(R.id.btnHome);
         edtNameQuestion = findViewById(R.id.edtNameQuestion);

@@ -22,7 +22,7 @@ import com.cstrien.thi_trac_nghiem.model.User;
 
 public class EditUserActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
 
     private Spinner spCategory;
@@ -53,13 +53,7 @@ public class EditUserActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditUserActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         btnEditUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +88,7 @@ public class EditUserActivity extends AppCompatActivity {
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
         spCategory = findViewById(R.id.spCategory);
-        btnDangXuat = findViewById(R.id.btnDangXuat2);
+
         btnEditUser = findViewById(R.id.btnEditUser);
         btnBackUser = findViewById(R.id.btnBackUser);
         edtMatKhau = findViewById(R.id.edtMatKhau);
@@ -123,15 +117,27 @@ public class EditUserActivity extends AppCompatActivity {
     }
 
     private boolean validateInput() {
-        if (edtMatKhau.getText().toString().trim().isEmpty()) {
+        String matKhau = edtMatKhau.getText().toString().trim();
+
+        if (matKhau.isEmpty()) {
             Toast.makeText(EditUserActivity.this, "Chưa nhập mật khẩu!", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (matKhau.length() < 3) {
+            Toast.makeText(EditUserActivity.this, "Mật khẩu phải có ít nhất 3 kí tự!", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
 
+
     private User getUserById(int id) {
         Database db = new Database(this);
         return db.getUserById(id);
     }
+
+    private void setEditTextError(EditText editText, String error) {
+        editText.requestFocus();
+        editText.setError(error);
+    }
+
 }

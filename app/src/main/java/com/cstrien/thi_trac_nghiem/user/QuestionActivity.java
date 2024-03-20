@@ -35,7 +35,7 @@ public class QuestionActivity extends AppCompatActivity {
     private TextView textViewCountDown;
     private TextView btnBackMainUser;
     private TextView btnHome;
-    private TextView btnDangXuat;
+
 
 
     private RadioGroup rbGroup;
@@ -115,15 +115,7 @@ public class QuestionActivity extends AppCompatActivity {
                 finishQuestion();
             }
         });
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createScore();
-                stopSound();
-                Intent intent = new Intent(QuestionActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
     }
 
@@ -266,7 +258,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         btnConfirmNext = findViewById(R.id.button_confirm_next);
         btnHome = findViewById(R.id.btnHome);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
+
 
         rbGroup = findViewById(R.id.radio_group);
         rb1 = findViewById(R.id.radio_button1);

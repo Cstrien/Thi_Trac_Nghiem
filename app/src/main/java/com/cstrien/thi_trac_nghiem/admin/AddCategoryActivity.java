@@ -22,7 +22,7 @@ import java.util.List;
 
 public class AddCategoryActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private ImageButton btnCreateCategory;
     private EditText edtNameCategory;
@@ -39,13 +39,7 @@ public class AddCategoryActivity extends AppCompatActivity {
         String user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
         //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddCategoryActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         btnCreateCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +80,6 @@ public class AddCategoryActivity extends AppCompatActivity {
 
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
         btnBackCategory = findViewById(R.id.btnBackCategory);
         btnHome = findViewById(R.id.btnHome);
         btnCreateCategory = findViewById(R.id.btnCreateCategory);

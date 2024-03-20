@@ -40,15 +40,6 @@
 
 
     <TextView
-        android:id="@+id/btnDangXuat"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/exit"></TextView>
-
-    <TextView
         android:id="@+id/btnHome"
         android:layout_width="39dp"
         android:layout_height="41dp"

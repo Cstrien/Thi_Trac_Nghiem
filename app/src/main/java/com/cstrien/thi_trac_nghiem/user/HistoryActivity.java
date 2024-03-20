@@ -14,11 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cstrien.thi_trac_nghiem.Database;
 import com.cstrien.thi_trac_nghiem.R;
-import com.cstrien.thi_trac_nghiem.adapter.HistoryAdapter;
-import com.cstrien.thi_trac_nghiem.adapter.ScoreAdapter;
 import com.cstrien.thi_trac_nghiem.LoginActivity;
 import com.cstrien.thi_trac_nghiem.model.Category;
-import com.cstrien.thi_trac_nghiem.model.Question;
 import com.cstrien.thi_trac_nghiem.model.Score;
 import com.cstrien.thi_trac_nghiem.model.User;
 
@@ -35,7 +32,7 @@ public class HistoryActivity extends AppCompatActivity {
     private ArrayList<Category> listCategories;
     private ArrayList<User> listUsers;
 
-    private HistoryAdapter historyAdapter;
+
 
     private String user_name;
 
@@ -98,8 +95,7 @@ public class HistoryActivity extends AppCompatActivity {
         listCategories = db.getListCategories(null);
         listUsers = db.getListUsers(null);
 
-        historyAdapter = new HistoryAdapter(listScore, listCategories);
-        lvHistory.setAdapter(historyAdapter);
+
 
     }
 

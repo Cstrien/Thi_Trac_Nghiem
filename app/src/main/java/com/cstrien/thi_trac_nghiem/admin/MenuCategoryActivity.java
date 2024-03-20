@@ -32,7 +32,7 @@ import java.util.List;
 
 public class MenuCategoryActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private ImageButton btnAddCategory;
     private TextView btnClear;
@@ -58,14 +58,6 @@ public class MenuCategoryActivity extends AppCompatActivity {
         txtUserName.setText("Xin chào " + user_name);
 
 
-        //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuCategoryActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         //
         btnAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,7 +182,7 @@ public class MenuCategoryActivity extends AppCompatActivity {
     private void anhXa() {
         txtUserName = findViewById(R.id.txtUserName);
         lvCategory = findViewById(R.id.lvCategory);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
+
         btnAddCategory = findViewById(R.id.btnAddCategory);
         btnHome = findViewById(R.id.btnHome);
         btnClear = findViewById(R.id.btnClear);

@@ -12,11 +12,13 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="4dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/exit"></TextView>
+        android:background="@drawable/exit">
+
+    </TextView>
 
     <TextView
         android:id="@+id/txtUserName"
-        android:layout_width="181dp"
+        android:layout_width="wrap_content"
         android:layout_height="37dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
@@ -35,7 +37,9 @@
         android:text="APP TRẮC NGHIỆM"
         android:textColor="#3168CC"
         android:textSize="30sp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold">
+
+    </TextView>
 
     <TextView
         android:id="@+id/btnGuide"
@@ -44,35 +48,21 @@
         android:layout_below="@id/txtTieuDe"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="200dp"
-        android:background="@drawable/guide"></TextView>
+        android:background="@drawable/guide">
 
-    <TextView
-        android:id="@+id/btnHistory"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/txtTieuDe"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="360dp"
-        android:background="@drawable/history"></TextView>
-
-    <TextView
-        android:id="@+id/btnRank"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_below="@id/txtTieuDe"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="201dp"
-        android:background="@drawable/rank"></TextView>
+    </TextView>
 
     <TextView
         android:id="@+id/btnReady"
-        android:layout_width="160dp"
-        android:layout_height="80dp"
+        android:layout_width="263dp"
+        android:layout_height="150dp"
+        android:backgroundTint="@null"
         android:layout_below="@id/txtTieuDe"
-
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/ready"></TextView>
+        android:layout_marginTop="1dp"
+        android:background="@drawable/ready2">
+
+    </TextView>
 
     <TextView
         android:id="@+id/btnDoiMatKhau"
@@ -80,16 +70,10 @@
         android:layout_height="80dp"
         android:layout_below="@id/txtTieuDe"
         android:layout_marginLeft="240dp"
-        android:layout_marginTop="360dp"
-        android:background="@drawable/reset"></TextView>
+        android:layout_marginTop="201dp"
+        android:background="@drawable/reset">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnHistory"
-        android:layout_marginLeft="110dp"
-        android:text="Lịch sử"
-        android:textSize="20dp"></TextView>
+    </TextView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -97,7 +81,9 @@
         android:layout_below="@id/btnGuide"
         android:layout_marginLeft="93dp"
         android:text="Hướng dẫn"
-        android:textSize="20dp"></TextView>
+        android:textSize="20dp">
+
+    </TextView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -105,15 +91,8 @@
         android:layout_below="@id/btnDoiMatKhau"
         android:layout_marginLeft="220dp"
         android:text="Đổi mật khẩu"
-        android:textSize="20dp"></TextView>
+        android:textSize="20dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnRank"
-        android:layout_marginLeft="240dp"
-
-        android:text="Xếp hạng"
-        android:textSize="20dp"></TextView>
+    </TextView>
 
 </RelativeLayout>

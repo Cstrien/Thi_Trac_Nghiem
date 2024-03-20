@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class MenuUserActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private TextView btnClear;
     private EditText edtSearch;
@@ -55,14 +55,7 @@ public class MenuUserActivity extends AppCompatActivity {
         user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
         //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuUserActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-        //
+
         btnAddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -192,7 +185,6 @@ public class MenuUserActivity extends AppCompatActivity {
         txtUserName = findViewById(R.id.txtUserName);
         btnAddUser = findViewById(R.id.btnAddUser);
         txtUserName = findViewById(R.id.txtUserName);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
         btnHome = findViewById(R.id.btnHome);
         lvUser = findViewById(R.id.lvUser);
         edtSearch = findViewById(R.id.edtSearch);

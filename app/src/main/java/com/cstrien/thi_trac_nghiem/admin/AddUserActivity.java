@@ -20,7 +20,7 @@ import com.cstrien.thi_trac_nghiem.model.User;
 
 public class AddUserActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private ImageButton btnCreateUser;
     private EditText edtTaiKhoan;
@@ -37,18 +37,14 @@ public class AddUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
         //
-        anhXa();
+        addControls();
         Intent intent = getIntent();
+
         user_name = intent.getStringExtra("user");
         txtUserName.setText("Xin chào " + user_name);
         //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AddUserActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
         btnCreateUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +78,7 @@ public class AddUserActivity extends AppCompatActivity {
         });
     }
 
-    private void anhXa() {
-        btnDangXuat = findViewById(R.id.btnDangXuat);
+    private void addControls() {
         btnBackUser = findViewById(R.id.btnBackUser);
         btnCreateUser = findViewById(R.id.btnCreateUser);
         btnHome = findViewById(R.id.btnHome);
@@ -104,19 +99,25 @@ public class AddUserActivity extends AppCompatActivity {
     }
 
     private boolean validateInput() {
+        String taiKhoan = edtTaiKhoan.getText().toString().trim();
+        String matKhau = edtMatKhau.getText().toString().trim();
 
-        if (edtTaiKhoan.getText().toString().trim().isEmpty()) {
+        if (taiKhoan.isEmpty()) {
             Toast.makeText(AddUserActivity.this, "Chưa nhập tài khoản!", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (edtMatKhau.getText().toString().trim().isEmpty()) {
+        } else if (matKhau.isEmpty()) {
             Toast.makeText(AddUserActivity.this, "Chưa nhập mật khẩu!", Toast.LENGTH_SHORT).show();
             return false;
-        } else if (!checkExistUser(edtTaiKhoan.getText().toString().trim())) {
+        } else if (matKhau.length() < 3) {
+            Toast.makeText(AddUserActivity.this, "Mật khẩu phải có ít nhất 3 kí tự!", Toast.LENGTH_SHORT).show();
+            return false;
+        } else if (!checkExistUser(taiKhoan)) {
             Toast.makeText(AddUserActivity.this, "Tên tài khoản đã được sử dụng!", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
     }
+
 
     private boolean checkExistUser(String name) {
         Database db = new Database(this);

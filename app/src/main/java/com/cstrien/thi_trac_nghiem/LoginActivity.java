@@ -1,6 +1,7 @@
 package com.cstrien.thi_trac_nghiem;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -77,13 +78,21 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validateInput() {
         if (edtTaiKhoan.getText().toString().trim().isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Chưa nhập tài khoản!", Toast.LENGTH_SHORT).show();
+            setEditTextError(edtTaiKhoan, "Chưa nhập tài khoản!");
             return false;
         } else if (edtMatKhau.getText().toString().trim().isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Chưa nhập mật khẩu!", Toast.LENGTH_SHORT).show();
+            setEditTextError(edtMatKhau, "Chưa nhập mật khẩu!");
             return false;
         }
         return true;
     }
+
+
+    private void setEditTextError(EditText editText, String error) {
+        editText.requestFocus();
+        editText.setError(error);
+
+    }
+
 
 }

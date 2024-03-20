@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 public class MenuQuestionActivity extends AppCompatActivity {
     private TextView txtUserName;
-    private TextView btnDangXuat;
+
     private TextView btnHome;
     private TextView btnClear;
     private EditText edtSearch;
@@ -66,14 +66,7 @@ public class MenuQuestionActivity extends AppCompatActivity {
 
             }
         });
-        //
-        btnDangXuat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuQuestionActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
+
         //
         btnAddQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +170,6 @@ public class MenuQuestionActivity extends AppCompatActivity {
         txtUserName = findViewById(R.id.txtUserName);
         lvQuestion = findViewById(R.id.lvQuestion);
         spCategory = findViewById(R.id.spCategory);
-        btnDangXuat = findViewById(R.id.btnDangXuat);
         btnAddQuestion = findViewById(R.id.btnAddQuestion);
         btnHome = findViewById(R.id.btnHome);
         btnClear = findViewById(R.id.btnClear);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFF5EE"
     android:orientation="vertical"
-    tools:context=".controller.user.QuestionActivity">
+    tools:context=".user.QuestionActivity">
 
     <TextView
         android:id="@+id/btnHome"
@@ -25,15 +25,6 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="110dp"
         android:background="@drawable/clock"></TextView>
-
-    <TextView
-        android:id="@+id/btnDangXuat"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="4dp"
-        android:layout_marginRight="8dp"
-        android:background="@drawable/exit"></TextView>
 
     <TextView
         android:id="@+id/text_view_score"
