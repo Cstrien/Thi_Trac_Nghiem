@@ -89,42 +89,34 @@ public class ChangePassActivity extends AppCompatActivity {
         return db.changePass(user_name, pass);
     }
     private boolean validateInput() {
-        String taiKhoan = edtTaiKhoan.getText().toString().trim();
-        String matKhauCu = edtMatKhau.getText().toString().trim();
-        String matKhauMoi = edtMatKhauMoi.getText().toString().trim();
-        String nhapLaiMatKhauMoi = edtNhapLaiMatKhauMoi.getText().toString().trim();
-
-        // Kiểm tra xem các trường đã được nhập hay chưa
-        if (taiKhoan.isEmpty()) {
+        Database db = new Database(this);
+        User user = db.getUserByNameAndPass(edtTaiKhoan.getText().toString().trim(), edtMatKhau.getText().toString().trim());
+        if (edtTaiKhoan.getText().toString().trim().isEmpty()) {
             setEditTextError(edtTaiKhoan, "Chưa nhập tài khoản!");
             return false;
-        } else if (matKhauCu.isEmpty()) {
+        } else if (edtMatKhau.getText().toString().trim().isEmpty()) {
             setEditTextError(edtMatKhau, "Chưa nhập mật khẩu cũ!");
             return false;
-        } else if (matKhauMoi.isEmpty()) {
+        } else if (edtMatKhauMoi.getText().toString().trim().isEmpty()) {
             setEditTextError(edtMatKhauMoi, "Chưa nhập mật khẩu mới!");
             return false;
-        } else if (nhapLaiMatKhauMoi.isEmpty()) {
+        } else if (edtNhapLaiMatKhauMoi.getText().toString().trim().isEmpty()) {
             setEditTextError(edtNhapLaiMatKhauMoi, "Chưa nhập lại mật khẩu mới!");
             return false;
-        } else if (matKhauMoi.length() < 3) { // Kiểm tra mật khẩu mới có ít nhất 3 kí tự
+        } else if (edtMatKhauMoi.getText().toString().trim().length() < 3) {
             setEditTextError(edtMatKhauMoi, "Mật khẩu mới phải có ít nhất 3 kí tự!");
             return false;
-        } else if (!nhapLaiMatKhauMoi.equalsIgnoreCase(matKhauMoi)) { // Kiểm tra mật khẩu mới và nhập lại có trùng khớp hay không
+        } else if (!edtNhapLaiMatKhauMoi.getText().toString().trim().equalsIgnoreCase(edtMatKhauMoi.getText().toString().trim())) {
             setEditTextError(edtNhapLaiMatKhauMoi, "Mật khẩu nhập lại không trùng khớp!");
             return false;
-        }
-
-        // Kiểm tra xem tài khoản và mật khẩu cũ có chính xác hay không
-        Database db = new Database(this);
-        User user = db.getUserByNameAndPass(taiKhoan, matKhauCu);
-        if (user.getName() == null) {
-            Toast.makeText(ChangePassActivity.this, "Tài khoản hoặc mật khẩu cũ không chính xác!", Toast.LENGTH_SHORT).show();
+        } else if (user.getName() == null) {
+            setEditTextError(edtTaiKhoan, "Tài khoản hoặc mật khẩu cũ không chính xác!");
             return false;
         }
-
         return true;
     }
+
+
 
     private void setEditTextError(EditText editText, String error) {
         editText.requestFocus();

@@ -88,7 +88,7 @@ public class Database extends SQLiteOpenHelper {
 
 
     // dữ liệu users
-    private String insertUser = "INSERT INTO users VAlUES (null,'admin', '1', 1), (null,'trien', '1', 0)";
+    private String insertUser = "INSERT INTO users VAlUES (null,'admin', '123', 1), (null,'trien', '123', 0)";
 
     // chèn dữ liệu categories
     private String insertCate = "INSERT INTO categories VAlUES (null,'Toán'), (null,'Văn'), (null,'Anh')";
