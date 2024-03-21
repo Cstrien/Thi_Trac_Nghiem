@@ -40,6 +40,10 @@ public class SignUpActivity extends AppCompatActivity {
 //                    Toast.makeText(SignUpActivity.this, "TK" + , Toast.LENGTH_SHORT).show();
                     if (signUp(user)) {
                         Toast.makeText(SignUpActivity.this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        // Đóng SignUpActivity để người dùng không thể quay lại từ LoginActivity
+                        finish();
                     } else
                         Toast.makeText(SignUpActivity.this, "Đăng ký không thành công!", Toast.LENGTH_SHORT).show();
                 }
