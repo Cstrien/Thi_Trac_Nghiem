@@ -1,7 +1,6 @@
 Đặt tên id Viết hoa chữ đầu
   VD Edittext    id= edt{Name}      edtUser    edtPass
 
-   Database Tham khảo https://github.com/LuongXuanNhat/MULTIPLE-CHOICE-EXAM-APP.git
 
    Rule Commit
    <type>:<description>
